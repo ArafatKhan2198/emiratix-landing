@@ -12,10 +12,10 @@
         }
 
         :root {
-            --primary: #0A2463;
+            --primary: #4A6A7A;
             --secondary: #C5A572;
-            --accent: #E63946;
-            --dark: #1A1A2E;
+            --accent: #6B8E9E;
+            --dark: #2C3E50;
             --light: #F8F9FA;
             --text: #2D3142;
         }
@@ -53,14 +53,21 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
             letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            color: var(--secondary);
         }
 
         .nav-links {
@@ -84,7 +91,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, rgba(10, 36, 99, 0.9), rgba(26, 26, 46, 0.85)), 
+            background: linear-gradient(135deg, rgba(74, 106, 122, 0.9), rgba(44, 62, 80, 0.85)), 
                         url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070') center/cover;
             display: flex;
             align-items: center;
@@ -279,7 +286,7 @@
         /* Stats Section */
         .stats {
             padding: 6rem 5%;
-            background: linear-gradient(135deg, var(--primary), var(--dark));
+            background: linear-gradient(135deg, var(--primary), var(--dark), var(--primary));
             color: white;
         }
 
@@ -384,7 +391,7 @@
         /* Contact Section */
         .contact {
             padding: 8rem 5%;
-            background: linear-gradient(135deg, rgba(10, 36, 99, 0.95), rgba(26, 26, 46, 0.9)), 
+            background: linear-gradient(135deg, rgba(74, 106, 122, 0.95), rgba(44, 62, 80, 0.9)), 
                         url('https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?q=80&w=2070') center/cover;
             color: white;
         }
@@ -571,6 +578,14 @@
                 gap: 1rem;
             }
 
+            .logo img {
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
             .nav-links {
                 flex-wrap: wrap;
                 justify-content: center;
@@ -622,7 +637,7 @@
         }
 
         .stats {
-            background: linear-gradient(135deg, var(--primary), var(--dark), #0A2463);
+            background: linear-gradient(135deg, var(--primary), var(--dark), var(--accent));
             background-size: 200% 200%;
             animation: gradient-shift 15s ease infinite;
         }
@@ -632,7 +647,10 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="logo">Emirat<span>ix</span></div>
+            <div class="logo">
+                <img src="logo.png" alt="Emiratix Solutions Logo">
+                <span class="logo-text">Emiratix Solutions</span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -698,16 +716,12 @@
     <section class="stats">
         <div class="stats-grid">
             <div class="stat-item fade-in">
-                <div class="stat-number">150+</div>
-                <div class="stat-label">Projects Completed</div>
-            </div>
-            <div class="stat-item fade-in">
                 <div class="stat-number">98%</div>
                 <div class="stat-label">Client Satisfaction</div>
             </div>
             <div class="stat-item fade-in">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Expert Consultants</div>
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Consultants</div>
             </div>
             <div class="stat-item fade-in">
                 <div class="stat-number">24/7</div>
@@ -783,7 +797,7 @@
                         </div>
                         <div class="contact-item-text">
                             <h4>Email</h4>
-                            <p>info@emiratix.ae</p>
+                            <p>director@emiratixsolutions.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -794,7 +808,7 @@
                         </div>
                         <div class="contact-item-text">
                             <h4>Phone</h4>
-                            <p>+971 XX XXX XXXX</p>
+                            <p>+971 50 359 2873<br>+91 73550 56178</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -805,7 +819,7 @@
                         </div>
                         <div class="contact-item-text">
                             <h4>Business Hours</h4>
-                            <p>Sun - Thu: 9:00 AM - 6:00 PM</p>
+                            <p>Mon - Fri: 9:00 AM - 6:00 PM</p>
                         </div>
                     </div>
                 </div>
