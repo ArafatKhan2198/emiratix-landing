@@ -70,6 +70,10 @@
             letter-spacing: -0.5px;
         }
 
+        .logo-text .golden {
+            color: var(--secondary);
+        }
+
         .nav-links {
             display: flex;
             gap: 3rem;
@@ -142,7 +146,8 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--secondary);
-            font-weight: 300;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero p {
@@ -172,14 +177,15 @@
         }
 
         .btn-primary {
-            background: var(--secondary);
+            background: linear-gradient(135deg, var(--secondary), #A58744);
             color: white;
+            box-shadow: 0 4px 15px rgba(196, 166, 104, 0.3);
         }
 
         .btn-primary:hover {
-            background: #B89556;
+            background: linear-gradient(135deg, #C9AF6B, #B89556);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(196, 166, 104, 0.5);
+            box-shadow: 0 10px 30px rgba(196, 166, 104, 0.6);
         }
 
         .btn-secondary {
@@ -347,6 +353,10 @@
             color: var(--primary);
             margin-bottom: 2rem;
             font-weight: 700;
+        }
+
+        .about-text h2 .golden {
+            color: var(--secondary);
         }
 
         .about-text p {
@@ -659,7 +669,7 @@
         <div class="nav-container">
             <div class="logo">
                 <img src="logo-icon.png" alt="Emiratix Logo">
-                <span class="logo-text">Emiratix Solutions</span>
+                <span class="logo-text">Emiratix <span class="golden">Solutions</span></span>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
