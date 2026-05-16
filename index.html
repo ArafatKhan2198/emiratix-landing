@@ -1102,7 +1102,7 @@
                     <p>Years of Oracle Flexcube Expertise</p>
                 </div>
                 <div class="hero-stat-item">
-                    <h3>$<span class="counter" data-target="2">0</span>M+</h3>
+                    <h3>$<span class="counter" data-target="2.0" data-decimals="1">0.0</span>M+</h3>
                     <p>Client Savings Achieved</p>
                 </div>
             </div>
@@ -1596,6 +1596,7 @@
                 if (entry.isIntersecting) {
                     const counter = entry.target;
                     const target = +counter.getAttribute('data-target');
+                    const decimals = counter.getAttribute('data-decimals') || 0;
                     const duration = 2000; // 2 seconds
                     const increment = target / (duration / 16); // 60fps
                     let current = 0;
@@ -1603,10 +1604,10 @@
                     const updateCount = () => {
                         current += increment;
                         if (current < target) {
-                            counter.innerText = Math.ceil(current);
+                            counter.innerText = current.toFixed(decimals);
                             requestAnimationFrame(updateCount);
                         } else {
-                            counter.innerText = target;
+                            counter.innerText = target.toFixed(decimals);
                         }
                     };
                     updateCount();
