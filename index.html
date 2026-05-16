@@ -97,74 +97,204 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(44, 74, 90, 0.94), rgba(15, 20, 25, 0.90)), 
-                        url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070') center/cover;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2630 100%);
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
             position: relative;
             overflow: hidden;
+            padding-top: 80px; /* Account for fixed nav */
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(to top, rgba(248, 249, 250, 1), transparent);
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=');
+            opacity: 0.5;
         }
 
-        .hero-content {
-            max-width: 900px;
-            padding: 0 5%;
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
             z-index: 1;
-            animation: fadeInUp 1s ease;
+            width: 100%;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-text {
+            color: white;
+            text-align: left;
         }
 
-        .hero h1 {
-            font-size: 4rem;
+        .hero-text h1 {
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 1.5rem;
             line-height: 1.2;
             letter-spacing: -1px;
         }
 
-        .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--secondary);
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
+        .hero-text p {
             font-size: 1.25rem;
             margin-bottom: 3rem;
-            opacity: 0.95;
+            opacity: 0.9;
             font-weight: 300;
+            line-height: 1.6;
+            color: #E2E8F0;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
-            justify-content: center;
+            justify-content: flex-start;
             flex-wrap: wrap;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            overflow: visible;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            display: block;
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .badge-1 {
+            bottom: -20px;
+            left: -30px;
+            animation-delay: 0s;
+        }
+
+        .badge-2 {
+            top: 40px;
+            right: -30px;
+            animation-delay: 3s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .badge-icon {
+            background: var(--secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .badge-text strong {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .badge-text span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Industries Banner */
+        .industries-banner {
+            background: var(--primary);
+            padding: 2rem 5%;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .industries-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .industries-title {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .industries-list {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .industry-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: white;
+            opacity: 0.8;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+        }
+
+        .industry-item:hover {
+            opacity: 1;
+        }
+
+        .industry-item svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--secondary);
+            fill: none;
+            stroke-width: 2;
         }
 
         .btn {
@@ -784,6 +914,31 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+                padding-top: 6rem;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .floating-badge {
+                display: none; /* Hide badges on smaller screens for cleaner look */
+            }
+
+            .industries-container {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
             .about-content,
             .contact-grid {
                 grid-template-columns: 1fr;
@@ -799,15 +954,11 @@
                 gap: 1.5rem;
             }
 
-            .hero h1 {
+            .hero-text h1 {
                 font-size: 2.5rem;
             }
 
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .hero p {
+            .hero-text p {
                 font-size: 1.1rem;
             }
 
@@ -929,13 +1080,58 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Transforming Business Excellence</h1>
-            <p class="tagline">A Global Leader in Strategic Solutions</p>
-            <p>Empowering organizations worldwide with cutting-edge commercial intelligence, project management expertise, and innovative software solutions.</p>
-            <div class="cta-buttons">
-                <a href="#services" class="btn btn-primary">Explore Services</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        <div class="hero-container">
+            <div class="hero-text fade-in">
+                <h1>Strategic Consulting, Core Banking Expertise & Managed Services for GCC Enterprises</h1>
+                <p>Emiratix Solutions helps banks, financial institutions, and growth-focused businesses execute transformation programs, strengthen governance, access expert resources, and make better commercial decisions.</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Book a Consultation</a>
+                    <a href="#services" class="btn btn-secondary">View Capabilities</a>
+                </div>
+            </div>
+            <div class="hero-visual fade-in">
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=1000" alt="Corporate Boardroom">
+                    <div class="floating-badge badge-1">
+                        <span class="badge-icon">✓</span>
+                        <div class="badge-text">
+                            <strong>Oracle Flexcube</strong>
+                            <span>Implementation Experts</span>
+                        </div>
+                    </div>
+                    <div class="floating-badge badge-2">
+                        <span class="badge-icon">⭐</span>
+                        <div class="badge-text">
+                            <strong>98%</strong>
+                            <span>Client Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Banner -->
+    <section class="industries-banner">
+        <div class="industries-container">
+            <p class="industries-title">Empowering Growth Across Key Sectors:</p>
+            <div class="industries-list">
+                <div class="industry-item">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11m16-11v11M8 14v3m4-3v3m4-3v3"/></svg>
+                    <span>Banking & Finance</span>
+                </div>
+                <div class="industry-item">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    <span>Commodities Trade</span>
+                </div>
+                <div class="industry-item">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+                    <span>Enterprise IT</span>
+                </div>
+                <div class="industry-item">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                    <span>Government & Public Sector</span>
+                </div>
             </div>
         </div>
     </section>
