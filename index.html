@@ -247,14 +247,19 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
-            justify-content: center;
         }
         
         @media (max-width: 1024px) {
             .services-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -426,93 +431,203 @@
             background: var(--light);
         }
 
-        .accordion {
-            max-width: 900px;
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(196, 166, 104, 0.15);
             display: flex;
             flex-direction: column;
-            gap: 1rem;
         }
 
-        .accordion-item {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--secondary);
+        }
+
+        .blog-image {
+            height: 220px;
             overflow: hidden;
-            border: 1px solid rgba(196, 166, 104, 0.1);
         }
 
-        .accordion-header {
+        .blog-image img {
             width: 100%;
-            padding: 1.5rem 2rem;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .blog-card:hover .blog-image img {
+            transform: scale(1.08);
+        }
+
+        .blog-content {
+            padding: 2.5rem 2rem;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            border: none;
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: 600;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .blog-category {
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .blog-content h3 {
             color: var(--primary);
-            text-align: left;
-            transition: background 0.3s ease;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .btn-read-more {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0;
+            transition: color 0.3s ease;
             font-family: inherit;
         }
 
-        .accordion-header:hover {
-            background: #fdfbf7;
-        }
-
-        .accordion-header.active {
-            color: var(--secondary);
-            border-bottom: 1px solid rgba(196, 166, 104, 0.1);
-        }
-
-        .accordion-header .icon {
-            font-size: 1.5rem;
-            font-weight: 300;
-            transition: transform 0.3s ease;
+        .btn-read-more:hover {
             color: var(--secondary);
         }
 
-        .accordion-header.active .icon {
-            transform: rotate(45deg);
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
         }
 
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
+        .modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-container {
+            position: relative;
             background: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            z-index: 2001;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .accordion-body {
-            padding: 2rem;
+        .modal.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0,0,0,0.05);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .modal-body h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            padding-right: 2rem;
+        }
+
+        .modal-body h4 {
+            color: var(--primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .modal-body p {
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-body ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
             color: var(--text);
             line-height: 1.8;
         }
 
-        .accordion-body h4 {
-            color: var(--primary);
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-            font-size: 1.1rem;
-        }
-
-        .accordion-body h4:first-child {
-            margin-top: 0;
-        }
-
-        .accordion-body p {
-            margin-bottom: 1rem;
-        }
-
-        .accordion-body ul {
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-
-        .accordion-body li {
+        .modal-body li {
             margin-bottom: 0.5rem;
         }
 
@@ -946,162 +1061,181 @@
                 <h2>Our Insights & Blogs</h2>
                 <p>Explore our latest thoughts, industry trends, and expert perspectives</p>
             </div>
-            <div class="accordion fade-in">
+            <div class="blog-grid fade-in">
                 <!-- Blog 1 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        Program Management, Governance & Advisory
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <h4>Turning Strategy into Measurable Success</h4>
-                            <p>At Emiratix Solutions, we believe that successful programs are not the result of chance — they are the outcome of disciplined management, strong governance, and informed advisory. Together, these three pillars ensure that ambitious strategies translate into tangible results, delivered on time and within budget.</p>
-                            
-                            <h4>Program Management</h4>
-                            <p>Program management is the engine that drives execution. It provides the structure, processes, and leadership required to coordinate multiple projects, align resources, and maintain focus on strategic objectives. Effective program management ensures:</p>
-                            <ul>
-                                <li>Seamless coordination across diverse workstreams</li>
-                                <li>Clear milestones and deliverables for every phase</li>
-                                <li>Proactive risk and issue tracking</li>
-                                <li>Efficient resource utilization to maximize value</li>
-                            </ul>
-                            <p>By embedding best practices and proven methodologies, we help organizations achieve predictability and consistency in delivery.</p>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800" alt="Program Management">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Advisory</span>
+                        <h3>Program Management, Governance & Advisory</h3>
+                        <p class="blog-excerpt">Turning ambitious strategies into measurable success through disciplined management and strong governance.</p>
+                        <button class="btn-read-more">Read Article <span>&rarr;</span></button>
+                    </div>
+                    <div class="blog-full-content" style="display: none;">
+                        <h4>Turning Strategy into Measurable Success</h4>
+                        <p>At Emiratix Solutions, we believe that successful programs are not the result of chance — they are the outcome of disciplined management, strong governance, and informed advisory. Together, these three pillars ensure that ambitious strategies translate into tangible results, delivered on time and within budget.</p>
+                        
+                        <h4>Program Management</h4>
+                        <p>Program management is the engine that drives execution. It provides the structure, processes, and leadership required to coordinate multiple projects, align resources, and maintain focus on strategic objectives. Effective program management ensures:</p>
+                        <ul>
+                            <li>Seamless coordination across diverse workstreams</li>
+                            <li>Clear milestones and deliverables for every phase</li>
+                            <li>Proactive risk and issue tracking</li>
+                            <li>Efficient resource utilization to maximize value</li>
+                        </ul>
+                        <p>By embedding best practices and proven methodologies, we help organizations achieve predictability and consistency in delivery.</p>
 
-                            <h4>Governance</h4>
-                            <p>Governance is the safeguard that keeps programs aligned and accountable. It establishes oversight mechanisms, decision-making structures, and escalation paths that prevent drift and delays.</p>
-                            <p>When governance is weak, programs often suffer from scope creep, unclear ownership, and delayed decisions. These setbacks are costly — eroding budgets, stakeholder confidence, and market opportunities. Strong governance, on the other hand, creates clarity:</p>
-                            <ul>
-                                <li>Defined roles and responsibilities</li>
-                                <li>Transparent reporting dashboards for stakeholders</li>
-                                <li>Regular steering committee reviews</li>
-                                <li>Early identification and mitigation of risks</li>
-                            </ul>
-                            <p>Governance is the difference between programs that stumble and those that deliver measurable impact.</p>
+                        <h4>Governance</h4>
+                        <p>Governance is the safeguard that keeps programs aligned and accountable. It establishes oversight mechanisms, decision-making structures, and escalation paths that prevent drift and delays.</p>
+                        <p>When governance is weak, programs often suffer from scope creep, unclear ownership, and delayed decisions. These setbacks are costly — eroding budgets, stakeholder confidence, and market opportunities. Strong governance, on the other hand, creates clarity:</p>
+                        <ul>
+                            <li>Defined roles and responsibilities</li>
+                            <li>Transparent reporting dashboards for stakeholders</li>
+                            <li>Regular steering committee reviews</li>
+                            <li>Early identification and mitigation of risks</li>
+                        </ul>
+                        <p>Governance is the difference between programs that stumble and those that deliver measurable impact.</p>
 
-                            <h4>Advisory</h4>
-                            <p>Advisory services provide the strategic lens that ensures programs are not just executed, but executed in the right direction. Our advisory expertise helps organizations:</p>
-                            <ul>
-                                <li>Align initiatives with long-term business goals</li>
-                                <li>Benchmark against industry best practices</li>
-                                <li>Anticipate market and regulatory changes</li>
-                                <li>Make informed decisions backed by data and experience</li>
-                            </ul>
-                            <p>Advisory is about foresight — guiding organizations to make choices today that position them for success tomorrow.</p>
+                        <h4>Advisory</h4>
+                        <p>Advisory services provide the strategic lens that ensures programs are not just executed, but executed in the right direction. Our advisory expertise helps organizations:</p>
+                        <ul>
+                            <li>Align initiatives with long-term business goals</li>
+                            <li>Benchmark against industry best practices</li>
+                            <li>Anticipate market and regulatory changes</li>
+                            <li>Make informed decisions backed by data and experience</li>
+                        </ul>
+                        <p>Advisory is about foresight — guiding organizations to make choices today that position them for success tomorrow.</p>
 
-                            <h4>The Emiratix Advantage</h4>
-                            <p>By integrating program management, governance, and advisory, Emiratix Solutions offers a comprehensive framework that ensures programs are not only well-executed but also strategically aligned. We help organizations avoid costly delays, maintain stakeholder confidence, and achieve sustainable success.</p>
-                        </div>
+                        <h4>The Emiratix Advantage</h4>
+                        <p>By integrating program management, governance, and advisory, Emiratix Solutions offers a comprehensive framework that ensures programs are not only well-executed but also strategically aligned. We help organizations avoid costly delays, maintain stakeholder confidence, and achieve sustainable success.</p>
                     </div>
                 </div>
+
                 <!-- Blog 2 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        Core Banking Market
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <h4>Emerging Core Banking Market Across the Globe and GCC</h4>
-                            <p>The global core banking market is undergoing a profound transformation. Banks worldwide are modernizing legacy systems to meet customer expectations for speed, transparency, and digital-first experiences.</p>
-                            <p>In the GCC, this transformation is accelerating. Banks are embracing cloud-native platforms that allow scalability and resilience, integrating fintech partnerships to expand offerings, and responding to regulatory reforms that encourage modernization. Mobile-first banking and AI-driven personalization are reshaping customer engagement, making financial services more accessible and intuitive.</p>
-                            
-                            <h4>Key developments include:</h4>
-                            <ul>
-                                <li><strong>Cloud adoption:</strong> Reducing infrastructure costs while improving agility.</li>
-                                <li><strong>Digital onboarding:</strong> Streamlined KYC processes that enhance customer experience.</li>
-                                <li><strong>Fintech collaboration:</strong> Partnerships that drive innovation in payments, lending, and wealth management.</li>
-                                <li><strong>Regulatory reform:</strong> Governments encouraging modernization to strengthen competitiveness.</li>
-                            </ul>
-                            <p>The GCC's proactive approach positions it as a hub for financial innovation. By investing in modern platforms and customer-centric strategies, banks in the region are setting benchmarks for global practices and attracting international investment.</p>
-                        </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?q=80&w=800" alt="Core Banking">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Market Trends</span>
+                        <h3>Core Banking Market</h3>
+                        <p class="blog-excerpt">The global core banking market is undergoing a profound transformation. Banks worldwide are modernizing legacy systems.</p>
+                        <button class="btn-read-more">Read Article <span>&rarr;</span></button>
+                    </div>
+                    <div class="blog-full-content" style="display: none;">
+                        <h4>Emerging Core Banking Market Across the Globe and GCC</h4>
+                        <p>The global core banking market is undergoing a profound transformation. Banks worldwide are modernizing legacy systems to meet customer expectations for speed, transparency, and digital-first experiences.</p>
+                        <p>In the GCC, this transformation is accelerating. Banks are embracing cloud-native platforms that allow scalability and resilience, integrating fintech partnerships to expand offerings, and responding to regulatory reforms that encourage modernization. Mobile-first banking and AI-driven personalization are reshaping customer engagement, making financial services more accessible and intuitive.</p>
+                        
+                        <h4>Key developments include:</h4>
+                        <ul>
+                            <li><strong>Cloud adoption:</strong> Reducing infrastructure costs while improving agility.</li>
+                            <li><strong>Digital onboarding:</strong> Streamlined KYC processes that enhance customer experience.</li>
+                            <li><strong>Fintech collaboration:</strong> Partnerships that drive innovation in payments, lending, and wealth management.</li>
+                            <li><strong>Regulatory reform:</strong> Governments encouraging modernization to strengthen competitiveness.</li>
+                        </ul>
+                        <p>The GCC's proactive approach positions it as a hub for financial innovation. By investing in modern platforms and customer-centric strategies, banks in the region are setting benchmarks for global practices and attracting international investment.</p>
                     </div>
                 </div>
+
                 <!-- Blog 3 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        Resource Augmentation & Managed Services
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <p>At Emiratix Solutions, we understand that organizations today face a dual challenge: the need to remain agile in rapidly changing markets while ensuring operational stability in mission-critical functions. Our Resource Augmentation & Managed Services offering is designed to meet this challenge head-on, combining flexible access to specialized talent with comprehensive management of complex systems.</p>
-                            
-                            <h4>Resource Augmentation</h4>
-                            <p>We provide organizations with the ability to scale their workforce instantly by embedding highly skilled professionals into existing teams. This model allows businesses to respond quickly to project demands without the overhead of permanent hiring.</p>
-                            <p>Our augmentation services deliver:</p>
-                            <ul>
-                                <li><strong>Specialized expertise on demand:</strong> Immediate access to professionals in IT, project management, compliance, and especially core banking transformation programs.</li>
-                                <li><strong>Cost efficiency:</strong> Reduced recruitment, training, and infrastructure expenses.</li>
-                                <li><strong>Agility:</strong> Scale resources up or down as projects evolve.</li>
-                                <li><strong>Faster execution:</strong> Accelerated delivery timelines with ready-to-deploy talent.</li>
-                            </ul>
-                            <p>This approach is particularly valuable for banks and financial institutions undergoing digital transformation, system upgrades, or regulatory compliance projects. By embedding our experts directly into client teams, we ensure seamless collaboration and measurable outcomes.</p>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800" alt="Resource Augmentation">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Services</span>
+                        <h3>Resource Augmentation & Managed Services</h3>
+                        <p class="blog-excerpt">Combining flexible access to specialized talent with comprehensive management of complex systems.</p>
+                        <button class="btn-read-more">Read Article <span>&rarr;</span></button>
+                    </div>
+                    <div class="blog-full-content" style="display: none;">
+                        <p>At Emiratix Solutions, we understand that organizations today face a dual challenge: the need to remain agile in rapidly changing markets while ensuring operational stability in mission-critical functions. Our Resource Augmentation & Managed Services offering is designed to meet this challenge head-on, combining flexible access to specialized talent with comprehensive management of complex systems.</p>
+                        
+                        <h4>Resource Augmentation</h4>
+                        <p>We provide organizations with the ability to scale their workforce instantly by embedding highly skilled professionals into existing teams. This model allows businesses to respond quickly to project demands without the overhead of permanent hiring.</p>
+                        <p>Our augmentation services deliver:</p>
+                        <ul>
+                            <li><strong>Specialized expertise on demand:</strong> Immediate access to professionals in IT, project management, compliance, and especially core banking transformation programs.</li>
+                            <li><strong>Cost efficiency:</strong> Reduced recruitment, training, and infrastructure expenses.</li>
+                            <li><strong>Agility:</strong> Scale resources up or down as projects evolve.</li>
+                            <li><strong>Faster execution:</strong> Accelerated delivery timelines with ready-to-deploy talent.</li>
+                        </ul>
+                        <p>This approach is particularly valuable for banks and financial institutions undergoing digital transformation, system upgrades, or regulatory compliance projects. By embedding our experts directly into client teams, we ensure seamless collaboration and measurable outcomes.</p>
 
-                            <h4>Managed Services</h4>
-                            <p>Beyond augmentation, Emiratix Solutions offers end-to-end managed services. We take ownership of critical functions, ensuring continuity, efficiency, and resilience. From IT operations to compliance monitoring, our managed services reduce complexity and allow clients to focus on strategic growth.</p>
-                            <p>Our managed services are built on three pillars:</p>
-                            <ul>
-                                <li><strong>Operational excellence:</strong> Streamlined processes and proactive monitoring.</li>
-                                <li><strong>Risk reduction:</strong> Ensuring compliance and minimizing disruptions.</li>
-                                <li><strong>Strategic focus:</strong> Freeing internal teams to concentrate on innovation and growth.</li>
-                            </ul>
+                        <h4>Managed Services</h4>
+                        <p>Beyond augmentation, Emiratix Solutions offers end-to-end managed services. We take ownership of critical functions, ensuring continuity, efficiency, and resilience. From IT operations to compliance monitoring, our managed services reduce complexity and allow clients to focus on strategic growth.</p>
+                        <p>Our managed services are built on three pillars:</p>
+                        <ul>
+                            <li><strong>Operational excellence:</strong> Streamlined processes and proactive monitoring.</li>
+                            <li><strong>Risk reduction:</strong> Ensuring compliance and minimizing disruptions.</li>
+                            <li><strong>Strategic focus:</strong> Freeing internal teams to concentrate on innovation and growth.</li>
+                        </ul>
 
-                            <h4>Core Banking Expertise — Oracle Flexcube</h4>
-                            <p>What truly differentiates Emiratix Solutions is our deep domain expertise in core banking systems, with a strong focus on Oracle Flexcube. We have seasoned professionals who understand the intricacies of Flexcube implementation, customization, and ongoing support.</p>
-                            <p>Our capabilities include:</p>
-                            <ul>
-                                <li><strong>Implementation Support:</strong> Deploying Flexcube modules tailored to business needs.</li>
-                                <li><strong>Customization & Integration:</strong> Aligning Flexcube with existing systems and workflows.</li>
-                                <li><strong>Testing & Quality Assurance:</strong> Ensuring smooth rollouts with minimal disruption.</li>
-                                <li><strong>Ongoing Support & Compliance:</strong> Managing upgrades, patches, and regulatory requirements.</li>
-                            </ul>
-                            <p>By combining resource augmentation with Flexcube expertise, Emiratix Solutions helps banks achieve faster rollouts, reduce risks, and maximize ROI from their core banking investments. This dual model ensures that financial institutions not only have the right talent at the right time but also the assurance that their critical systems are managed with precision and accountability.</p>
-                        </div>
+                        <h4>Core Banking Expertise — Oracle Flexcube</h4>
+                        <p>What truly differentiates Emiratix Solutions is our deep domain expertise in core banking systems, with a strong focus on Oracle Flexcube. We have seasoned professionals who understand the intricacies of Flexcube implementation, customization, and ongoing support.</p>
+                        <p>Our capabilities include:</p>
+                        <ul>
+                            <li><strong>Implementation Support:</strong> Deploying Flexcube modules tailored to business needs.</li>
+                            <li><strong>Customization & Integration:</strong> Aligning Flexcube with existing systems and workflows.</li>
+                            <li><strong>Testing & Quality Assurance:</strong> Ensuring smooth rollouts with minimal disruption.</li>
+                            <li><strong>Ongoing Support & Compliance:</strong> Managing upgrades, patches, and regulatory requirements.</li>
+                        </ul>
+                        <p>By combining resource augmentation with Flexcube expertise, Emiratix Solutions helps banks achieve faster rollouts, reduce risks, and maximize ROI from their core banking investments. This dual model ensures that financial institutions not only have the right talent at the right time but also the assurance that their critical systems are managed with precision and accountability.</p>
                     </div>
                 </div>
+
                 <!-- Blog 4 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        Commercial Information Services
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <h4>The Importance of Commercial Information Services</h4>
-                            <p>In today's fast-paced business environment, decisions must be informed by reliable data. Commercial information services provide organizations with actionable intelligence — from market trends to competitor analysis.</p>
-                            <p>These services empower businesses to:</p>
-                            <ul>
-                                <li><strong>Reduce uncertainty:</strong> Data-driven insights improve planning accuracy.</li>
-                                <li><strong>Identify opportunities:</strong> Spot emerging markets and customer segments.</li>
-                                <li><strong>Manage risks:</strong> Anticipate challenges and mitigate them effectively.</li>
-                                <li><strong>Gain a competitive edge:</strong> Stay ahead of industry trends and competitor moves.</li>
-                            </ul>
-                            <p>For example, a company entering a new market can leverage commercial information services to understand customer behavior, regulatory requirements, and competitor strategies. This reduces risk and increases the likelihood of success.</p>
-                            <p>Organizations that invest in commercial information services gain clarity, confidence, and a sustainable edge in decision-making.</p>
-                        </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800" alt="Commercial Information">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Intelligence</span>
+                        <h3>Commercial Information Services</h3>
+                        <p class="blog-excerpt">In today's fast-paced business environment, decisions must be informed by reliable data and actionable intelligence.</p>
+                        <button class="btn-read-more">Read Article <span>&rarr;</span></button>
+                    </div>
+                    <div class="blog-full-content" style="display: none;">
+                        <h4>The Importance of Commercial Information Services</h4>
+                        <p>In today's fast-paced business environment, decisions must be informed by reliable data. Commercial information services provide organizations with actionable intelligence — from market trends to competitor analysis.</p>
+                        <p>These services empower businesses to:</p>
+                        <ul>
+                            <li><strong>Reduce uncertainty:</strong> Data-driven insights improve planning accuracy.</li>
+                            <li><strong>Identify opportunities:</strong> Spot emerging markets and customer segments.</li>
+                            <li><strong>Manage risks:</strong> Anticipate challenges and mitigate them effectively.</li>
+                            <li><strong>Gain a competitive edge:</strong> Stay ahead of industry trends and competitor moves.</li>
+                        </ul>
+                        <p>For example, a company entering a new market can leverage commercial information services to understand customer behavior, regulatory requirements, and competitor strategies. This reduces risk and increases the likelihood of success.</p>
+                        <p>Organizations that invest in commercial information services gain clarity, confidence, and a sustainable edge in decision-making.</p>
                     </div>
                 </div>
+
                 <!-- Blog 5 -->
-                <div class="accordion-item">
-                    <button class="accordion-header">
-                        Commodities Advisory
-                        <span class="icon">+</span>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="accordion-body">
-                            <h4>The Importance of Commodities Facilitation & Advisory Services</h4>
-                            <p>Commodity markets are volatile, complex, and heavily regulated. Businesses navigating these markets need expert guidance to manage risks and seize opportunities.</p>
-                            <p>Advisory services provide:</p>
-                            <ul>
-                                <li><strong>Strategic deal structuring:</strong> Secure favorable contracts and negotiations.</li>
-                                <li><strong>Regulatory compliance:</strong> Ensure adherence to international trade laws.</li>
-                                <li><strong>Market intelligence:</strong> Anticipate price movements and market shifts.</li>
-                                <li><strong>Risk management:</strong> Protect investments against volatility.</li>
-                            </ul>
-                            <p>For instance, a manufacturing firm sourcing raw materials can benefit from advisory services that secure favorable contracts, ensure compliance, and hedge against price volatility.</p>
-                            <p>Partnering with experienced advisors ensures transparency, efficiency, and long-term value creation in commodity trading and facilitation.</p>
-                        </div>
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=800" alt="Commodities Advisory">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">Trade</span>
+                        <h3>Commodities Advisory</h3>
+                        <p class="blog-excerpt">Commodity markets are volatile and complex. Businesses navigating these markets need expert guidance to manage risks.</p>
+                        <button class="btn-read-more">Read Article <span>&rarr;</span></button>
+                    </div>
+                    <div class="blog-full-content" style="display: none;">
+                        <h4>The Importance of Commodities Facilitation & Advisory Services</h4>
+                        <p>Commodity markets are volatile, complex, and heavily regulated. Businesses navigating these markets need expert guidance to manage risks and seize opportunities.</p>
+                        <p>Advisory services provide:</p>
+                        <ul>
+                            <li><strong>Strategic deal structuring:</strong> Secure favorable contracts and negotiations.</li>
+                            <li><strong>Regulatory compliance:</strong> Ensure adherence to international trade laws.</li>
+                            <li><strong>Market intelligence:</strong> Anticipate price movements and market shifts.</li>
+                            <li><strong>Risk management:</strong> Protect investments against volatility.</li>
+                        </ul>
+                        <p>For instance, a manufacturing firm sourcing raw materials can benefit from advisory services that secure favorable contracts, ensure compliance, and hedge against price volatility.</p>
+                        <p>Partnering with experienced advisors ensures transparency, efficiency, and long-term value creation in commodity trading and facilitation.</p>
                     </div>
                 </div>
             </div>
@@ -1194,6 +1328,17 @@
         </div>
     </section>
 
+    <!-- Blog Modal -->
+    <div id="blog-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Emiratix Solutions L.L.C-FZ. All rights reserved. | Dubai, United Arab Emirates</p>
@@ -1240,25 +1385,33 @@
             });
         });
 
-        // Accordion functionality
-        document.querySelectorAll('.accordion-header').forEach(button => {
-            button.addEventListener('click', () => {
-                const accordionContent = button.nextElementSibling;
-                const isActive = button.classList.contains('active');
+        // Blog Modal Functionality
+        const modal = document.getElementById('blog-modal');
+        if (modal) {
+            const modalBody = modal.querySelector('.modal-body');
+            const closeBtn = modal.querySelector('.modal-close');
+            const overlay = modal.querySelector('.modal-overlay');
 
-                // Close all other accordions
-                document.querySelectorAll('.accordion-header').forEach(otherButton => {
-                    otherButton.classList.remove('active');
-                    otherButton.nextElementSibling.style.maxHeight = null;
+            document.querySelectorAll('.blog-card').forEach(card => {
+                const btn = card.querySelector('.btn-read-more');
+                const content = card.querySelector('.blog-full-content').innerHTML;
+                const title = card.querySelector('h3').innerText;
+                
+                btn.addEventListener('click', () => {
+                    modalBody.innerHTML = `<h2>${title}</h2>` + content;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
                 });
-
-                // Toggle current accordion
-                if (!isActive) {
-                    button.classList.add('active');
-                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-                }
             });
-        });
+
+            const closeModal = () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', closeModal);
+        }
 
         // Check for success message in URL
         const urlParams = new URLSearchParams(window.location.search);
