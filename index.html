@@ -97,8 +97,8 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(44, 74, 90, 0.94), rgba(15, 20, 25, 0.90)), 
+            min-height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 38, 48, 0.9), rgba(15, 20, 25, 0.95)), 
                         url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070') center/cover;
             display: flex;
             align-items: center;
@@ -106,58 +106,141 @@
             text-align: center;
             color: white;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 200px;
-            background: linear-gradient(to top, rgba(248, 249, 250, 1), transparent);
+            padding-top: 100px;
+            padding-bottom: 60px;
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 1200px;
             padding: 0 5%;
             z-index: 1;
+            width: 100%;
             animation: fadeInUp 1s ease;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         .hero h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             line-height: 1.2;
             letter-spacing: -1px;
         }
 
         .hero .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             color: var(--secondary);
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-weight: 500;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
+        .hero .main-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+            font-family: Georgia, serif;
+        }
+
+        .hero .hero-desc {
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+            opacity: 0.8;
             font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Services Grid */
+        .hero-services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero-service-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-service-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-service-icon svg {
+            width: 40px;
+            height: 40px;
+            stroke: var(--secondary);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .hero-service-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: white;
+        }
+
+        .hero-service-item p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            font-style: italic;
+            line-height: 1.5;
+            font-family: Georgia, serif;
+        }
+
+        /* Hero Divider & Stats */
+        .hero-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            margin: 0 auto 2rem auto;
+            max-width: 800px;
+        }
+
+        .hero .secondary-quote {
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 3rem;
+            font-family: Georgia, serif;
+        }
+
+        .hero-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-stat-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .hero .final-quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-family: Georgia, serif;
         }
 
         .cta-buttons {
@@ -784,6 +867,15 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .hero-services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+
+            .hero-stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
             .about-content,
             .contact-grid {
                 grid-template-columns: 1fr;
@@ -799,6 +891,10 @@
                 gap: 1.5rem;
             }
 
+            .hero {
+                padding-top: 120px;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -807,8 +903,19 @@
                 font-size: 1.2rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            .hero-services-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-stats-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero .secondary-quote,
+            .hero .final-quote {
+                font-size: 1.2rem;
             }
 
             .section-header h2 {
@@ -932,10 +1039,67 @@
         <div class="hero-content">
             <h1>Transforming Business Excellence</h1>
             <p class="tagline">A Global Leader in Strategic Solutions</p>
-            <p>Empowering organizations worldwide with cutting-edge commercial intelligence, project management expertise, and innovative software solutions.</p>
+            <p class="main-quote">"The best way to predict the future is to create it." — Peter Drucker</p>
+            <p class="hero-desc">At Emiratix Solutions, we help organizations scale, modernize, and compete with tailored strategies and innovative solutions.</p>
+            
+            <div class="hero-services-grid">
+                <div class="hero-service-item">
+                    <div class="hero-service-icon">
+                        <!-- Magnifying Glass -->
+                        <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <h4>Commercial Intelligence</h4>
+                    <p>"Information is the oil of the 21st century, and analytics is the combustion engine."<br>— Peter Sondergaard</p>
+                </div>
+                <div class="hero-service-item">
+                    <div class="hero-service-icon">
+                        <!-- Clipboard/Book -->
+                        <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+                    </div>
+                    <h4>Project Management</h4>
+                    <p>"Plans are nothing; planning is everything."<br>— Dwight D. Eisenhower</p>
+                </div>
+                <div class="hero-service-item">
+                    <div class="hero-service-icon">
+                        <!-- Screens/Software -->
+                        <svg viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4>Software Solutions</h4>
+                    <p>"Innovation distinguishes between a leader and a follower."<br>— Steve Jobs</p>
+                </div>
+                <div class="hero-service-item">
+                    <div class="hero-service-icon">
+                        <!-- Scales/Advisory -->
+                        <svg viewBox="0 0 24 24"><path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
+                    </div>
+                    <h4>Commodities Advisory</h4>
+                    <p>"Risk comes from not knowing what you're doing."<br>— Warren Buffett</p>
+                </div>
+            </div>
+
+            <div class="hero-divider"></div>
+            <p class="secondary-quote">"Quality is not an act, it is a habit." — Aristotle</p>
+
+            <div class="hero-stats-grid">
+                <div class="hero-stat-item">
+                    <h3>20+</h3>
+                    <p>GCC Projects Delivered</p>
+                </div>
+                <div class="hero-stat-item">
+                    <h3>15+</h3>
+                    <p>Years of Oracle Flexcube Expertise</p>
+                </div>
+                <div class="hero-stat-item">
+                    <h3>$2M+</h3>
+                    <p>Client Savings Achieved</p>
+                </div>
+            </div>
+
+            <p class="final-quote">"Start where you are. Use what you have. Do what you can." — Arthur Ashe</p>
+
             <div class="cta-buttons">
-                <a href="#services" class="btn btn-primary">Explore Services</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#services" class="btn btn-secondary">Download Brochure</a>
             </div>
         </div>
     </section>
