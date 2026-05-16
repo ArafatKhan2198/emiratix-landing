@@ -115,8 +115,22 @@
             padding: 0 5%;
             z-index: 1;
             width: 100%;
-            animation: fadeInUp 1s ease;
         }
+
+        .hero-content > * {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-content h1 { animation-delay: 0.1s; }
+        .hero-content .tagline { animation-delay: 0.2s; }
+        .hero-content .main-quote { animation-delay: 0.3s; }
+        .hero-content .hero-desc { animation-delay: 0.4s; }
+        .hero-content .hero-services-grid { animation-delay: 0.5s; }
+        .hero-content .hero-divider { animation-delay: 0.6s; }
+        .hero-content .secondary-quote { animation-delay: 0.7s; }
+        .hero-content .hero-stats-grid { animation-delay: 0.8s; }
+        .hero-content .cta-buttons { animation-delay: 0.9s; }
 
         .hero h1 {
             font-size: 3.8rem;
@@ -1094,15 +1108,15 @@
 
             <div class="hero-stats-grid">
                 <div class="hero-stat-item">
-                    <h3>10+</h3>
+                    <h3><span class="counter" data-target="10">0</span>+</h3>
                     <p>GCC Projects Delivered</p>
                 </div>
                 <div class="hero-stat-item">
-                    <h3>15+</h3>
+                    <h3><span class="counter" data-target="15">0</span>+</h3>
                     <p>Years of Oracle Flexcube Expertise</p>
                 </div>
                 <div class="hero-stat-item">
-                    <h3>$2M+</h3>
+                    <h3>$<span class="counter" data-target="2">0</span>M+</h3>
                     <p>Client Savings Achieved</p>
                 </div>
             </div>
@@ -1175,15 +1189,15 @@
     <section class="stats">
         <div class="stats-grid">
             <div class="stat-item fade-in">
-                <div class="stat-number">98%</div>
+                <div class="stat-number"><span class="counter" data-target="98">0</span>%</div>
                 <div class="stat-label">Client Satisfaction</div>
             </div>
             <div class="stat-item fade-in">
-                <div class="stat-number">20+</div>
+                <div class="stat-number"><span class="counter" data-target="20">0</span>+</div>
                 <div class="stat-label">Consultants</div>
             </div>
             <div class="stat-item fade-in">
-                <div class="stat-number">24/7</div>
+                <div class="stat-number"><span class="counter" data-target="24">0</span>/7</div>
                 <div class="stat-label">Support Available</div>
             </div>
         </div>
@@ -1588,6 +1602,36 @@
             closeBtn.addEventListener('click', closeModal);
             overlay.addEventListener('click', closeModal);
         }
+
+        // Number Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const duration = 2000; // 2 seconds
+                    const increment = target / (duration / 16); // 60fps
+                    let current = 0;
+
+                    const updateCount = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.innerText = Math.ceil(current);
+                            requestAnimationFrame(updateCount);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                    observer.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
 
         // Check for success message in URL
         const urlParams = new URLSearchParams(window.location.search);
