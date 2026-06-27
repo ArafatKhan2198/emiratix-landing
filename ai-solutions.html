@@ -183,6 +183,73 @@
             transform: translateY(-2px);
         }
 
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        /* AI Expertise Section */
+        .ai-expertise {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .expertise-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(196, 166, 104, 0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary);
+        }
+
+        .expertise-card .featured-icon {
+            margin: 0 0 1.25rem 0;
+        }
+
+        .expertise-card h3 {
+            font-size: 1.35rem;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .expertise-card p {
+            color: #666;
+            line-height: 1.7;
+            flex-grow: 1;
+            margin-bottom: 1.25rem;
+        }
+
+        .expertise-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .expertise-link:hover {
+            color: var(--secondary);
+        }
+
         /* Generic Section */
         .section-padding {
             padding: 5rem 5%;
@@ -631,7 +698,7 @@
             </a>
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
-                <li><a href="ai-solutions.html">AI Solutions <span class="nav-badge">NEW</span></a></li>
+                <li><a href="ai-solutions.html">AI Solutions <span class="nav-badge">PROVEN</span></a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#about">About</a></li>
                 <li><a href="index.html#blogs">Blogs</a></li>
@@ -646,8 +713,9 @@
             <h1>AI Solutions by Emiratix</h1>
             <h2>Private, Practical, and Cost-Efficient AI for Modern Enterprises</h2>
             <p>We help organizations adopt AI using secure, open, and cost-efficient technologies — from private knowledge assistants and document intelligence to workflow automation and sovereign AI infrastructure.</p>
-            <div style="margin-top: 2.5rem;">
+            <div class="hero-cta">
                 <a href="#readiness" class="btn btn-primary">Book an AI Readiness Sprint</a>
+                <a href="#ai-expertise" class="btn btn-secondary">Explore Our AI Offerings</a>
             </div>
         </div>
     </section>
@@ -742,6 +810,56 @@
             <div class="ai-deliver-item">
                 <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
                 <span>Supporting it long-term</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Expertise for AI -->
+    <section id="ai-expertise" class="ai-expertise">
+        <div class="section-header fade-in">
+            <h2>Our Expertise for AI</h2>
+            <p>Proven capabilities to design, deploy, and manage private AI systems for regulated and growth-focused enterprises</p>
+        </div>
+        <div class="expertise-grid fade-in">
+            <div class="expertise-card">
+                <div class="featured-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                </div>
+                <h3>Private Knowledge Copilots</h3>
+                <p>Secure AI assistants built on your policies, SOPs, contracts, and internal documents — with source-based answers and role-based access.</p>
+                <a href="#all-products" class="expertise-link">View KnowledgeAI &rarr;</a>
+            </div>
+            <div class="expertise-card">
+                <div class="featured-icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                </div>
+                <h3>Document Intelligence</h3>
+                <p>Automated extraction, classification, and routing for invoices, contracts, KYC files, tenders, and compliance documents.</p>
+                <a href="#all-products" class="expertise-link">View DocuAI &rarr;</a>
+            </div>
+            <div class="expertise-card">
+                <div class="featured-icon">
+                    <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <h3>Workflow Automation</h3>
+                <p>AI connected to your email, CRM, ERP, and ticketing tools to automate approvals, routing, reporting, and repetitive operations.</p>
+                <a href="#all-products" class="expertise-link">View FlowAI &rarr;</a>
+            </div>
+            <div class="expertise-card">
+                <div class="featured-icon">
+                    <svg viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <h3>AI-Powered Analytics</h3>
+                <p>Natural-language access to business data — dashboards, reports, and insights from databases, spreadsheets, and CRMs.</p>
+                <a href="#all-products" class="expertise-link">View InsightAI &rarr;</a>
+            </div>
+            <div class="expertise-card">
+                <div class="featured-icon">
+                    <svg viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                </div>
+                <h3>Sovereign AI Infrastructure</h3>
+                <p>Private, hosted AI environments with secure access, monitoring, and full data control for regulated organizations.</p>
+                <a href="#all-products" class="expertise-link">View SovereignAI &rarr;</a>
             </div>
         </div>
     </section>
