@@ -348,11 +348,14 @@
 
         .service-card {
             background: white;
-            padding: 3rem;
+            padding: 2.5rem;
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             transition: all 0.4s ease;
             border: 1px solid rgba(196, 166, 104, 0.15);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .service-card:hover {
@@ -387,16 +390,48 @@
         }
 
         .service-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
             font-weight: 600;
+        }
+
+        .service-excerpt {
+            color: #666;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .service-card p {
             color: #666;
             font-size: 1.1rem;
             line-height: 1.7;
+        }
+
+        .btn-learn-more {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0;
+            transition: color 0.3s ease;
+            font-family: inherit;
+            margin-top: auto;
+        }
+
+        .btn-learn-more:hover {
+            color: var(--secondary);
         }
 
         .service-details {
@@ -1137,7 +1172,11 @@
                         </svg>
                     </div>
                     <h3>Commercial Information Services</h3>
-                    <p>Leverage data-driven insights through comprehensive market research, competitor analysis, and industry trends. We provide accurate, timely intelligence to help you make informed decisions and gain a competitive edge.</p>
+                    <p class="service-excerpt">Data-driven market research, competitor analysis, and industry intelligence to help you make informed decisions.</p>
+                    <button class="btn-learn-more">Learn More <span>&rarr;</span></button>
+                    <div class="service-full-content" style="display: none;">
+                        <p>Leverage data-driven insights through comprehensive market research, competitor analysis, and industry trends. We provide accurate, timely intelligence to help you make informed decisions and gain a competitive edge.</p>
+                    </div>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1146,14 +1185,18 @@
                         </svg>
                     </div>
                     <h3>IT Consulting & Program Management</h3>
-                    <p>Drive technology initiatives with precision and strategic oversight. Our IT consulting expertise helps organizations design scalable solutions, while program management ensures disciplined execution from conception to completion.</p>
-                    <ul class="service-details">
-                        <li><strong>Strategic IT Advisory:</strong> Guiding technology choices to align with business goals.</li>
-                        <li><strong>Program Oversight:</strong> Managing resources, budgets, and timelines with accountability.</li>
-                        <li><strong>Risk & Compliance Management:</strong> Identifying challenges early and ensuring regulatory adherence.</li>
-                        <li><strong>Delivery Excellence:</strong> Achieving measurable outcomes on schedule and within budget.</li>
-                    </ul>
-                    <p>By combining consulting insight with structured program governance, we enable organizations to transform complex initiatives into successful, value-driven results.</p>
+                    <p class="service-excerpt">Strategic IT advisory, program oversight, and delivery excellence for complex technology initiatives.</p>
+                    <button class="btn-learn-more">Learn More <span>&rarr;</span></button>
+                    <div class="service-full-content" style="display: none;">
+                        <p>Drive technology initiatives with precision and strategic oversight. Our IT consulting expertise helps organizations design scalable solutions, while program management ensures disciplined execution from conception to completion.</p>
+                        <ul class="service-details">
+                            <li><strong>Strategic IT Advisory:</strong> Guiding technology choices to align with business goals.</li>
+                            <li><strong>Program Oversight:</strong> Managing resources, budgets, and timelines with accountability.</li>
+                            <li><strong>Risk & Compliance Management:</strong> Identifying challenges early and ensuring regulatory adherence.</li>
+                            <li><strong>Delivery Excellence:</strong> Achieving measurable outcomes on schedule and within budget.</li>
+                        </ul>
+                        <p>By combining consulting insight with structured program governance, we enable organizations to transform complex initiatives into successful, value-driven results.</p>
+                    </div>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1162,7 +1205,11 @@
                         </svg>
                     </div>
                     <h3>Software Services</h3>
-                    <p>Custom cloud-based software solutions delivered directly to end users. We help organizations reduce costs, increase efficiency, and eliminate hardware acquisition expenses through tailored applications.</p>
+                    <p class="service-excerpt">Custom cloud-based software solutions that reduce costs, increase efficiency, and eliminate hardware expenses.</p>
+                    <button class="btn-learn-more">Learn More <span>&rarr;</span></button>
+                    <div class="service-full-content" style="display: none;">
+                        <p>Custom cloud-based software solutions delivered directly to end users. We help organizations reduce costs, increase efficiency, and eliminate hardware acquisition expenses through tailored applications.</p>
+                    </div>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1171,7 +1218,11 @@
                         </svg>
                     </div>
                     <h3>Commodities Facilitation & Advisory Services</h3>
-                    <p>Navigate complex global commodity markets with confidence. Through partnerships with globally renowned consulting and advisory firms, we facilitate strategic deals that align with your business objectives. Our expertise ensures transparency, compliance, and value creation, helping you secure competitive advantages in an ever-evolving trade landscape.</p>
+                    <p class="service-excerpt">Navigate global commodity markets with confidence through strategic deal facilitation and advisory partnerships.</p>
+                    <button class="btn-learn-more">Learn More <span>&rarr;</span></button>
+                    <div class="service-full-content" style="display: none;">
+                        <p>Navigate complex global commodity markets with confidence. Through partnerships with globally renowned consulting and advisory firms, we facilitate strategic deals that align with your business objectives. Our expertise ensures transparency, compliance, and value creation, helping you secure competitive advantages in an ever-evolving trade landscape.</p>
+                    </div>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1180,7 +1231,11 @@
                         </svg>
                     </div>
                     <h3>Resource Augmentation & Managed Services</h3>
-                    <p>At Emiratix Solutions, we understand that organizations today face a dual challenge: the need to remain agile in rapidly changing markets while ensuring operational stability in mission-critical functions. Our Resource Augmentation & Managed Services offering is designed to meet this challenge head-on, combining flexible access to specialized talent with comprehensive management of complex systems.</p>
+                    <p class="service-excerpt">Flexible access to specialized talent and managed services for mission-critical operational stability.</p>
+                    <button class="btn-learn-more">Learn More <span>&rarr;</span></button>
+                    <div class="service-full-content" style="display: none;">
+                        <p>At Emiratix Solutions, we understand that organizations today face a dual challenge: the need to remain agile in rapidly changing markets while ensuring operational stability in mission-critical functions. Our Resource Augmentation & Managed Services offering is designed to meet this challenge head-on, combining flexible access to specialized talent with comprehensive management of complex systems.</p>
+                    </div>
                 </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
@@ -1189,14 +1244,18 @@
                         </svg>
                     </div>
                     <h3>Software Testing Services</h3>
-                    <p>Ensure reliability and performance of mission-critical banking platforms with our specialized end-to-end testing solutions. We focus on core banking systems including Oracle Flexcube, TCS BaNCS, Temenos T24, and Infosys Finacle, delivering comprehensive coverage across:</p>
-                    <ul class="service-details">
-                        <li><strong>Functional Testing:</strong> Validating workflows, transactions, and compliance requirements.</li>
-                        <li><strong>Load Testing:</strong> Assessing system behavior under peak transaction volumes.</li>
-                        <li><strong>Stress Testing:</strong> Identifying breaking points and ensuring resilience under extreme conditions.</li>
-                        <li><strong>Endurance Testing:</strong> Measuring long-term stability and performance over sustained usage.</li>
-                    </ul>
-                    <p>Our expertise guarantees that your banking applications meet the highest standards of accuracy, scalability, and robustness — minimizing risks and enabling smooth rollouts in demanding financial environments.</p>
+                    <p class="service-excerpt">End-to-end testing for Oracle Flexcube, TCS BaNCS, Temenos T24, and Finacle — functional, load, stress, and endurance.</p>
+                    <button class="btn-learn-more">Learn More <span>&rarr;</span></button>
+                    <div class="service-full-content" style="display: none;">
+                        <p>Ensure reliability and performance of mission-critical banking platforms with our specialized end-to-end testing solutions. We focus on core banking systems including Oracle Flexcube, TCS BaNCS, Temenos T24, and Infosys Finacle, delivering comprehensive coverage across:</p>
+                        <ul class="service-details">
+                            <li><strong>Functional Testing:</strong> Validating workflows, transactions, and compliance requirements.</li>
+                            <li><strong>Load Testing:</strong> Assessing system behavior under peak transaction volumes.</li>
+                            <li><strong>Stress Testing:</strong> Identifying breaking points and ensuring resilience under extreme conditions.</li>
+                            <li><strong>Endurance Testing:</strong> Measuring long-term stability and performance over sustained usage.</li>
+                        </ul>
+                        <p>Our expertise guarantees that your banking applications meet the highest standards of accuracy, scalability, and robustness — minimizing risks and enabling smooth rollouts in demanding financial environments.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1546,6 +1605,17 @@
         </div>
     </div>
 
+    <!-- Service Modal -->
+    <div id="service-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2026 Emiratix Solutions L.L.C-FZ. All rights reserved. | Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, United Arab Emirates</p>
@@ -1618,6 +1688,34 @@
 
             closeBtn.addEventListener('click', closeModal);
             overlay.addEventListener('click', closeModal);
+        }
+
+        // Service Modal Functionality
+        const serviceModal = document.getElementById('service-modal');
+        if (serviceModal) {
+            const serviceModalBody = serviceModal.querySelector('.modal-body');
+            const serviceCloseBtn = serviceModal.querySelector('.modal-close');
+            const serviceOverlay = serviceModal.querySelector('.modal-overlay');
+
+            document.querySelectorAll('.service-card').forEach(card => {
+                const btn = card.querySelector('.btn-learn-more');
+                const content = card.querySelector('.service-full-content').innerHTML;
+                const title = card.querySelector('h3').innerText;
+
+                btn.addEventListener('click', () => {
+                    serviceModalBody.innerHTML = `<h2>${title}</h2>` + content;
+                    serviceModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            const closeServiceModal = () => {
+                serviceModal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            serviceCloseBtn.addEventListener('click', closeServiceModal);
+            serviceOverlay.addEventListener('click', closeServiceModal);
         }
 
         // Number Counter Animation
