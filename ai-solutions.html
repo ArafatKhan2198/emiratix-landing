@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Solutions by Emiratix - Build Private, Practical, AI-Powered Business Systems without unnecessary complexity or vendor lock-in.">
+    <title>AI Solutions | Emiratix Solutions FZ-LLC</title>
+    <link rel="icon" type="image/png" href="logo-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2C4A5A;
+            --secondary: #B89556;
+            --accent: #4A6B7F;
+            --dark: #0F1419;
+            --light: #F8F9FA;
+            --text: #111827;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 65px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text .golden {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.05rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 80vh;
+            background: linear-gradient(135deg, rgba(26, 38, 48, 0.9), rgba(15, 20, 25, 0.95)), 
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            padding-top: 160px;
+            padding-bottom: 60px;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            padding: 0 5%;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            line-height: 1.2;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #a6844c;
+            transform: translateY(-2px);
+        }
+
+        /* Generic Section */
+        .section-padding {
+            padding: 5rem 5%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* AI Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .product-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-content h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-content .tagline {
+            color: var(--secondary);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-content .excerpt {
+            color: #555;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .btn-learn-more {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0;
+            transition: color 0.3s ease;
+            margin-top: auto;
+        }
+
+        .btn-learn-more:hover {
+            color: var(--secondary);
+        }
+
+        /* Deployment & Why Emiratix */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+        }
+
+        .info-card h3 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            color: var(--secondary);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta-list {
+            list-style: none;
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .cta-list li {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 1.05rem;
+        }
+
+        /* Modals */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-container {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            border-radius: 12px;
+            position: relative;
+            z-index: 2001;
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+            z-index: 2002;
+        }
+
+        .modal-close:hover {
+            color: var(--primary);
+        }
+
+        .modal-body {
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .modal-body h2 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            padding-right: 2rem;
+        }
+
+        .modal-body .modal-tagline {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .modal-body h4 {
+            color: var(--text);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .modal-body ul {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+            margin-top: auto;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* simple mobile fix, requires hamburger for real site */
+            }
+            .hero h1 { font-size: 2.8rem; }
+            .hero h2 { font-size: 1.5rem; }
+            .modal-body { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo" style="text-decoration:none;">
+                <img src="logo-icon.png" alt="Emiratix Logo">
+                <span class="logo-text">Emiratix <span class="golden">Solutions</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="ai-solutions.html">AI Solutions</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#blogs">Blogs</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI Solutions by Emiratix</h1>
+            <h2>Build Private, Practical, AI-Powered Business Systems</h2>
+            <p>Emiratix Solutions helps organizations adopt AI without unnecessary complexity, vendor lock-in, or uncontrolled data exposure.</p>
+            <p>We design, implement, host, and manage AI-powered systems using leading commercial models and open-source technologies — helping businesses automate workflows, search internal knowledge, process documents, improve decisions, and build private AI infrastructure.</p>
+            <p style="color:var(--secondary); font-weight:600; margin-top:2rem;">We build AI systems that work with your documents, your teams, your tools, your workflows, and your security requirements.</p>
+            <div style="margin-top: 2.5rem;">
+                <a href="#readiness" class="btn btn-primary">Book an AI Readiness Sprint</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container section-padding">
+        <!-- Products Section -->
+        <div class="section-header fade-in">
+            <h2>Our AI Product Offerings</h2>
+            <p>Tailored intelligence for every aspect of your operations</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=800" alt="KnowledgeAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix KnowledgeAI</h3>
+                    <p class="tagline">Your company knowledge. Searchable, secure, and AI-powered.</p>
+                    <p class="excerpt">Turn your company documents, policies, SOPs, contracts, manuals, reports, and internal knowledge into a secure AI assistant.</p>
+                    <button class="btn-learn-more" data-target="modal-1">View Details <span>&rarr;</span></button>
+                    <div id="modal-1" style="display:none;">
+                        <h4>Private Knowledge Copilot for Your Organization</h4>
+                        <p>KnowledgeAI helps your employees find answers instantly from trusted company data, with source-based responses and role-based access.</p>
+                        <h4>Best For:</h4>
+                        <p>Enterprises, universities, hospitals, consulting firms, law firms, real estate groups, logistics companies, and regulated organizations.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Internal policy assistant</li>
+                            <li>HR and employee handbook assistant</li>
+                            <li>SOP and operations knowledge assistant</li>
+                            <li>Contract and legal document Q&A</li>
+                            <li>Project documentation assistant</li>
+                            <li>Training and onboarding assistant</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=800" alt="DocuAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix DocuAI</h3>
+                    <p class="tagline">From document overload to intelligent automation.</p>
+                    <p class="excerpt">Intelligent Document Processing that reads, extracts, classifies, summarizes, and routes business documents automatically.</p>
+                    <button class="btn-learn-more" data-target="modal-2">View Details <span>&rarr;</span></button>
+                    <div id="modal-2" style="display:none;">
+                        <h4>Intelligent Document Processing and Automation</h4>
+                        <p>From invoices and contracts to resumes, compliance files, KYC documents, tenders, and reports — DocuAI reduces manual document handling and improves operational speed.</p>
+                        <h4>Best For:</h4>
+                        <p>Finance, healthcare, logistics, legal, HR, education, real estate, procurement, insurance, and trading businesses.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Invoice data extraction</li>
+                            <li>Contract review and clause identification</li>
+                            <li>Resume screening</li>
+                            <li>Tender document summarization</li>
+                            <li>KYC and compliance document processing</li>
+                            <li>Medical or insurance document summarization</li>
+                            <li>Procurement and purchase order processing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800" alt="FlowAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix FlowAI</h3>
+                    <p class="tagline">AI that does the work, not just talks about it.</p>
+                    <p class="excerpt">Connect AI with your business tools to automate repetitive work across departments and operational systems.</p>
+                    <button class="btn-learn-more" data-target="modal-3">View Details <span>&rarr;</span></button>
+                    <div id="modal-3" style="display:none;">
+                        <h4>AI Workflow Automation for Business Operations</h4>
+                        <p>FlowAI reads emails, classifies requests, generates responses, creates tickets, routes approvals, updates CRMs, prepares reports, and triggers workflows across your existing systems.</p>
+                        <h4>Best For:</h4>
+                        <p>SMEs, enterprises, service companies, operations teams, HR teams, sales teams, support teams, and back-office departments.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Email triage and auto-routing</li>
+                            <li>Lead qualification and follow-up</li>
+                            <li>Internal approval automation</li>
+                            <li>Support ticket creation</li>
+                            <li>Document routing</li>
+                            <li>Meeting summary and task assignment</li>
+                            <li>Daily operational reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800" alt="InsightAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix InsightAI</h3>
+                    <p class="tagline">Ask your business data. Get answers instantly.</p>
+                    <p class="excerpt">AI Data Analyst allowing business users to ask questions from company data in simple language and receive clear answers.</p>
+                    <button class="btn-learn-more" data-target="modal-4">View Details <span>&rarr;</span></button>
+                    <div id="modal-4" style="display:none;">
+                        <h4>AI Data Analyst for Business Intelligence</h4>
+                        <p>Connects with databases, spreadsheets, CRMs, ERPs, and dashboards to help leadership teams make faster decisions with clear answers, charts, summaries, and reports.</p>
+                        <h4>Best For:</h4>
+                        <p>Retail, manufacturing, education, healthcare, logistics, finance, real estate, hospitality, and management teams.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Sales trend analysis</li>
+                            <li>Branch performance reports</li>
+                            <li>Customer behavior insights</li>
+                            <li>Revenue and cost summaries</li>
+                            <li>Operational dashboards</li>
+                            <li>Management reports</li>
+                            <li>Natural-language database queries</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1534536281715-e28d76689b4d?q=80&w=800" alt="SupportAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix SupportAI</h3>
+                    <p class="tagline">Faster support. Lower workload. Better experience.</p>
+                    <p class="excerpt">AI Customer Support and Helpdesk Agent for website chat, WhatsApp, email, and internal ticketing systems.</p>
+                    <button class="btn-learn-more" data-target="modal-5">View Details <span>&rarr;</span></button>
+                    <div id="modal-5" style="display:none;">
+                        <h4>AI Customer Support and Helpdesk Agent</h4>
+                        <p>Answers customer questions, creates support tickets, summarizes complaints, escalates complex issues, and assists support teams with accurate replies.</p>
+                        <h4>Best For:</h4>
+                        <p>E-commerce, real estate, clinics, universities, SaaS companies, logistics companies, travel agencies, and service businesses.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Website AI chatbot</li>
+                            <li>WhatsApp support assistant</li>
+                            <li>Email support automation</li>
+                            <li>Internal IT helpdesk assistant</li>
+                            <li>FAQ automation</li>
+                            <li>Ticket summarization</li>
+                            <li>Customer complaint analysis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=800" alt="SalesAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix SalesAI</h3>
+                    <p class="tagline">Turn scattered sales activity into intelligent revenue action.</p>
+                    <p class="excerpt">AI Sales and CRM Intelligence Copilot to manage leads, follow-ups, proposals, and customer relationships.</p>
+                    <button class="btn-learn-more" data-target="modal-6">View Details <span>&rarr;</span></button>
+                    <div id="modal-6" style="display:none;">
+                        <h4>AI Sales and CRM Intelligence Copilot</h4>
+                        <p>Improves CRM usage, identifies high-priority leads, drafts follow-up messages, summarizes client history, and recommends next actions for sales teams.</p>
+                        <h4>Best For:</h4>
+                        <p>Real estate firms, consulting companies, recruitment agencies, SaaS companies, training institutes, B2B service providers, and trading businesses.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Lead scoring</li>
+                            <li>CRM cleanup</li>
+                            <li>Follow-up email generation</li>
+                            <li>Proposal drafting</li>
+                            <li>Sales meeting summaries</li>
+                            <li>Lost-deal analysis</li>
+                            <li>Customer history summaries</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800" alt="GovernAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix GovernAI</h3>
+                    <p class="tagline">Governed AI for organizations that cannot afford risk.</p>
+                    <p class="excerpt">AI Compliance, Policy, and Risk Assistant for managing internal controls and regulatory obligations.</p>
+                    <button class="btn-learn-more" data-target="modal-7">View Details <span>&rarr;</span></button>
+                    <div id="modal-7" style="display:none;">
+                        <h4>AI Compliance, Policy, and Risk Assistant</h4>
+                        <p>Helps teams search policies, identify gaps, summarize compliance documents, and maintain human-reviewed AI workflows.</p>
+                        <h4>Best For:</h4>
+                        <p>Healthcare, education, insurance, legal, finance, government-linked entities, manufacturing, and regulated businesses.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Policy Q&A assistant</li>
+                            <li>Compliance document review</li>
+                            <li>Audit preparation support</li>
+                            <li>Contract compliance checks</li>
+                            <li>Vendor risk review</li>
+                            <li>HR compliance assistant</li>
+                            <li>Data privacy support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=800" alt="SovereignAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix SovereignAI</h3>
+                    <p class="tagline">Own your AI stack. Control your data. Scale on your terms.</p>
+                    <p class="excerpt">Private AI infrastructure and model hosting for organizations needing AI inside their own cloud or data center.</p>
+                    <button class="btn-learn-more" data-target="modal-8">View Details <span>&rarr;</span></button>
+                    <div id="modal-8" style="display:none;">
+                        <h4>Private AI Infrastructure and Model Hosting</h4>
+                        <p>We deploy and manage private AI infrastructure using open-source and enterprise-grade models, with secure access, monitoring, and audit logs.</p>
+                        <h4>Best For:</h4>
+                        <p>Large enterprises, regulated businesses, government-related organizations, hospitals, legal firms, financial institutions, and privacy-sensitive companies.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Private LLM deployment</li>
+                            <li>On-premise AI assistant</li>
+                            <li>Secure internal knowledge AI</li>
+                            <li>Private document intelligence platform</li>
+                            <li>AI model gateway</li>
+                            <li>AI infrastructure monitoring</li>
+                            <li>Controlled AI access for employees</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800" alt="OpenStackAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix OpenStackAI</h3>
+                    <p class="tagline">Reduce SaaS dependency. Build a smarter, private stack.</p>
+                    <p class="excerpt">Secure, self-hosted, open-source alternatives with AI capabilities to replace expensive SaaS tools.</p>
+                    <button class="btn-learn-more" data-target="modal-9">View Details <span>&rarr;</span></button>
+                    <div id="modal-9" style="display:none;">
+                        <h4>Open-Source SaaS Replacement and AI Modernization</h4>
+                        <p>Helps businesses replace or complement tools for automation, analytics, CRM, project management, signatures, internal knowledge, and collaboration.</p>
+                        <h4>Best For:</h4>
+                        <p>Cost-conscious businesses, growing companies, technology teams, SMEs, and enterprises looking for greater control.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Workflow automation platforms</li>
+                            <li>Internal CRM systems</li>
+                            <li>Project management systems</li>
+                            <li>Knowledge management systems</li>
+                            <li>Analytics platforms</li>
+                            <li>E-signature workflows</li>
+                            <li>Self-hosted business tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-card fade-in">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800" alt="DevAI" class="product-image">
+                <div class="product-content">
+                    <h3>Emiratix DevAI</h3>
+                    <p class="tagline">Accelerate engineering without exposing your code.</p>
+                    <p class="excerpt">AI Developer and QA Productivity Suite to improve development, testing, and release processes.</p>
+                    <button class="btn-learn-more" data-target="modal-10">View Details <span>&rarr;</span></button>
+                    <div id="modal-10" style="display:none;">
+                        <h4>AI Developer and QA Productivity Suite</h4>
+                        <p>Understands codebases, generates test cases, reviews pull requests, summarizes bugs, drafts documentation, and supports QA teams using private AI assistants.</p>
+                        <h4>Best For:</h4>
+                        <p>IT departments, software companies, SaaS startups, enterprise engineering teams, and QA teams.</p>
+                        <h4>Use Cases:</h4>
+                        <ul>
+                            <li>Codebase Q&A</li>
+                            <li>Test case generation</li>
+                            <li>Bug triage</li>
+                            <li>API documentation</li>
+                            <li>Pull request review</li>
+                            <li>Release note generation</li>
+                            <li>Legacy code explanation</li>
+                            <li>QA automation support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Deployment Options -->
+        <div class="section-header fade-in" style="margin-top: 6rem;">
+            <h2>Deployment Options</h2>
+            <p>Flexible infrastructure tailored to your security and operational requirements</p>
+        </div>
+        <div class="info-grid fade-in">
+            <div class="info-card">
+                <h3>Managed AI Deployment</h3>
+                <p>For companies that want speed and lower operational overhead. We build the solution using trusted commercial AI APIs and managed cloud services.</p>
+            </div>
+            <div class="info-card">
+                <h3>Hybrid AI Deployment</h3>
+                <p>For companies that want sensitive data controlled privately while still using selected commercial AI models where required.</p>
+            </div>
+            <div class="info-card">
+                <h3>Private / Sovereign AI Deployment</h3>
+                <p>For companies that need AI inside their own cloud, private server, or data center with stronger control, auditability, and data ownership.</p>
+            </div>
+        </div>
+
+        <!-- Why Emiratix -->
+        <div class="section-header fade-in" style="margin-top: 6rem;">
+            <h2>Why Emiratix for AI?</h2>
+        </div>
+        <div class="info-grid fade-in">
+            <div class="info-card">
+                <h3>Practical AI, Not Hype</h3>
+                <p>We focus on real business outcomes: faster work, lower manual effort, better decisions, and secure automation.</p>
+            </div>
+            <div class="info-card">
+                <h3>Open & Cost-Efficient Architecture</h3>
+                <p>We use a balanced mix of open-source technologies, commercial AI models, and private deployment options to reduce unnecessary vendor lock-in.</p>
+            </div>
+            <div class="info-card">
+                <h3>Security and Governance First</h3>
+                <p>Our AI solutions are built with access control, audit logs, human review, data privacy, and controlled deployment in mind.</p>
+            </div>
+            <div class="info-card">
+                <h3>Built Around Your Business</h3>
+                <p>We do not force a generic AI tool into your organization. We design AI around your workflows, documents, systems, and teams.</p>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div id="readiness" class="cta-section fade-in">
+            <h2>Start With an AI Readiness Sprint</h2>
+            <p>Not sure where AI fits in your business? Our AI Readiness Sprint helps identify high-value AI use cases, assess your data and systems, define the right architecture, and create a practical implementation roadmap.</p>
+            <p style="margin-top: 1.5rem; font-weight: 600;">In 2 to 4 weeks, we help you answer:</p>
+            <ul class="cta-list">
+                <li>Where can AI reduce manual work?</li>
+                <li>Which workflows can be automated?</li>
+                <li>Which documents and data power AI?</li>
+                <li>Managed, Open-Source, or Private AI?</li>
+                <li>What is the expected business impact?</li>
+                <li>What should be built first?</li>
+            </ul>
+            <div style="margin-top: 3rem;">
+                <a href="index.html#contact" class="btn btn-secondary">Book Your AI Readiness Sprint</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Base -->
+    <div id="product-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
+            <div class="modal-body">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Emiratix Solutions L.L.C-FZ. All rights reserved. | Meydan Grandstand, 6th floor, Meydan Road, Nad Al Sheba, Dubai, United Arab Emirates</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Modal Functionality
+        const modal = document.getElementById('product-modal');
+        const modalBody = modal.querySelector('.modal-body');
+        const closeBtn = modal.querySelector('.modal-close');
+        const overlay = modal.querySelector('.modal-overlay');
+
+        document.querySelectorAll('.btn-learn-more').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.product-card');
+                const title = card.querySelector('h3').innerText;
+                const tagline = card.querySelector('.tagline').innerText;
+                const targetId = this.getAttribute('data-target');
+                const contentHtml = document.getElementById(targetId).innerHTML;
+                
+                modalBody.innerHTML = `<h2>${title}</h2>
+                                       <p class="modal-tagline">${tagline}</p>
+                                       ${contentHtml}`;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', closeModal);
+    </script>
+</body>
+</html>
