@@ -211,6 +211,137 @@
             margin: 0 auto;
         }
 
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), transparent);
+            border-radius: 2px;
+            margin: 1rem auto 0;
+        }
+
+        /* Featured AI Products */
+        .ai-showcase {
+            padding: 5rem 5% 0;
+            background: var(--light);
+        }
+
+        .ai-products-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .ai-product-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(196, 166, 104, 0.15);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ai-product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+            border-color: var(--secondary);
+        }
+
+        .featured-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.25rem;
+            background: linear-gradient(135deg, #C4A668, #A58744);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .featured-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .ai-product-card h3 {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .ai-product-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .ai-showcase-cta {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .ai-deliver {
+            padding: 4rem 5% 5rem;
+            background: white;
+        }
+
+        .ai-deliver-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .ai-deliver-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .ai-deliver-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .ai-deliver-icon {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ai-deliver-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: white;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .ai-deliver-item span {
+            font-size: 1.05rem;
+            color: var(--primary);
+            font-weight: 500;
+            line-height: 1.4;
+            padding-top: 0.5rem;
+        }
+
         /* AI Products Grid */
         .products-grid {
             display: grid;
@@ -476,6 +607,17 @@
             .hero h1 { font-size: 2.8rem; }
             .hero h2 { font-size: 1.5rem; }
             .modal-body { padding: 2rem 1.5rem; }
+            .ai-products-grid { grid-template-columns: 1fr; }
+            .ai-deliver-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 1200px) {
+            .ai-products-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 1024px) {
+            .ai-products-grid { grid-template-columns: repeat(2, 1fr); }
+            .ai-deliver-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -502,19 +644,111 @@
     <section class="hero">
         <div class="hero-content">
             <h1>AI Solutions by Emiratix</h1>
-            <h2>Build Private, Practical, AI-Powered Business Systems</h2>
-            <p>Emiratix Solutions helps organizations adopt AI without unnecessary complexity, vendor lock-in, or uncontrolled data exposure.</p>
-            <p>We design, implement, host, and manage AI-powered systems using leading commercial models and open-source technologies — helping businesses automate workflows, search internal knowledge, process documents, improve decisions, and build private AI infrastructure.</p>
-            <p style="color:var(--secondary); font-weight:600; margin-top:2rem;">We build AI systems that work with your documents, your teams, your tools, your workflows, and your security requirements.</p>
+            <h2>Private, Practical, and Cost-Efficient AI for Modern Enterprises</h2>
+            <p>We help organizations adopt AI using secure, open, and cost-efficient technologies — from private knowledge assistants and document intelligence to workflow automation and sovereign AI infrastructure.</p>
             <div style="margin-top: 2.5rem;">
                 <a href="#readiness" class="btn btn-primary">Book an AI Readiness Sprint</a>
             </div>
         </div>
     </section>
 
+    <!-- Featured AI Products -->
+    <section class="ai-showcase">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Start With Our Core AI Solutions</h2>
+                <p>Five proven products to help your organization adopt AI quickly and securely.</p>
+            </div>
+
+            <div class="ai-products-grid fade-in">
+                <div class="ai-product-card">
+                    <div class="featured-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                    </div>
+                    <h3>KnowledgeAI</h3>
+                    <p>Private Knowledge Copilot</p>
+                </div>
+                <div class="ai-product-card">
+                    <div class="featured-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                    </div>
+                    <h3>DocuAI</h3>
+                    <p>Intelligent Document Processing</p>
+                </div>
+                <div class="ai-product-card">
+                    <div class="featured-icon">
+                        <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h3>FlowAI</h3>
+                    <p>AI Workflow Automation</p>
+                </div>
+                <div class="ai-product-card">
+                    <div class="featured-icon">
+                        <svg viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    </div>
+                    <h3>InsightAI</h3>
+                    <p>AI Data Analyst</p>
+                </div>
+                <div class="ai-product-card">
+                    <div class="featured-icon">
+                        <svg viewBox="0 0 24 24"><path d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"/></svg>
+                    </div>
+                    <h3>SovereignAI</h3>
+                    <p>Private AI Infrastructure</p>
+                </div>
+            </div>
+
+            <div class="ai-showcase-cta fade-in">
+                <a href="#all-products" class="btn btn-primary">Explore All AI Solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Deliver -->
+    <section class="ai-deliver">
+        <div class="section-header fade-in">
+            <h2>What We Deliver</h2>
+        </div>
+        <p class="ai-deliver-intro fade-in">We deliver complete AI solutions at competitive prices — from strategy to long-term support.</p>
+        <div class="ai-deliver-grid fade-in">
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Selecting the right stack</span>
+            </div>
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Building the solution</span>
+            </div>
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Hosting it securely</span>
+            </div>
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Integrating with your business systems</span>
+            </div>
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Adding governance</span>
+            </div>
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Maintaining it</span>
+            </div>
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Training users</span>
+            </div>
+            <div class="ai-deliver-item">
+                <div class="ai-deliver-icon"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+                <span>Supporting it long-term</span>
+            </div>
+        </div>
+    </section>
+
     <div class="container section-padding">
         <!-- Products Section -->
-        <div class="section-header fade-in">
+        <div id="all-products" class="section-header fade-in">
             <h2>Our AI Product Offerings</h2>
             <p>Tailored intelligence for every aspect of your operations</p>
         </div>
