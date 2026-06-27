@@ -95,6 +95,18 @@
             color: var(--secondary);
         }
 
+        .nav-badge {
+            background: var(--secondary);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 50px;
+            margin-left: 0.4rem;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -155,7 +167,7 @@
         /* Hero Services Grid */
         .hero-services-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(6, 1fr);
             gap: 1.5rem;
             margin-bottom: 3rem;
             width: 100%;
@@ -362,6 +374,10 @@
             transform: translateY(-10px);
             box-shadow: 0 20px 60px rgba(0,0,0,0.18);
             border-color: var(--secondary);
+        }
+
+        .service-card--featured {
+            border: 2px solid var(--secondary);
         }
 
         .service-icon {
@@ -1073,7 +1089,7 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="ai-solutions.html">AI Solutions</a></li>
+                <li><a href="ai-solutions.html">AI Solutions <span class="nav-badge">NEW</span></a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#blogs">Blogs</a></li>
@@ -1086,9 +1102,9 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Transforming Business Excellence</h1>
-            <p class="tagline">A Global Leader in Strategic Solutions</p>
+            <p class="tagline">Consulting, Technology &amp; AI Solutions</p>
             <p class="main-quote">"The best way to predict the future is to create it." — Peter Drucker</p>
-            <p class="hero-desc">At Emiratix Solutions, we help organizations scale, modernize, and compete with tailored strategies and innovative solutions.</p>
+            <p class="hero-desc">At Emiratix Solutions, we help organizations scale, modernize, and compete with tailored strategies, modern technology, and private AI systems built around your business.</p>
             
             <div class="hero-services-grid">
                 <div class="hero-service-item">
@@ -1131,6 +1147,14 @@
                     <h4>Resource Augmentation</h4>
                     <p>"Great things in business are never done by one person; they're done by a team."<br>— Steve Jobs</p>
                 </div>
+                <div class="hero-service-item">
+                    <div class="hero-service-icon">
+                        <!-- AI / Circuit -->
+                        <svg viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <h4>AI Solutions</h4>
+                    <p>"AI is the new electricity."<br>— Andrew Ng</p>
+                </div>
             </div>
 
             <div class="hero-divider"></div>
@@ -1166,6 +1190,32 @@
                 <p>Comprehensive solutions tailored to accelerate your business growth in the dynamic Middle Eastern market</p>
             </div>
             <div class="services-grid">
+                <div class="service-card service-card--featured fade-in">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                        </svg>
+                    </div>
+                    <h3>AI Solutions</h3>
+                    <p class="service-excerpt">Private, practical AI systems — knowledge copilots, document intelligence, workflow automation, and sovereign AI infrastructure.</p>
+                    <button class="btn-learn-more">Learn More <span>&rarr;</span></button>
+                    <div class="service-full-content" style="display: none;">
+                        <p>Emiratix builds AI systems around your workflows, documents, and security requirements — not generic chatbots.</p>
+                        <ul class="service-details">
+                            <li><strong>KnowledgeAI</strong> — Private knowledge copilot</li>
+                            <li><strong>DocuAI</strong> — Intelligent document processing</li>
+                            <li><strong>FlowAI</strong> — AI workflow automation</li>
+                            <li><strong>InsightAI</strong> — Natural-language business intelligence</li>
+                            <li><strong>SupportAI</strong> — AI customer support agent</li>
+                            <li><strong>SalesAI</strong> — CRM intelligence copilot</li>
+                            <li><strong>GovernAI</strong> — Compliance and risk assistant</li>
+                            <li><strong>SovereignAI</strong> — Private AI infrastructure</li>
+                            <li><strong>OpenStackAI</strong> — Open-source SaaS modernization</li>
+                            <li><strong>DevAI</strong> — Developer and QA productivity suite</li>
+                        </ul>
+                        <p><a href="ai-solutions.html">View all 10 AI Solutions &rarr;</a></p>
+                    </div>
+                </div>
                 <div class="service-card fade-in">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1289,7 +1339,7 @@
             <div class="about-text fade-in">
                 <h2>About Emiratix <span class="golden">Solutions</span></h2>
                 <p>Emiratix Solutions is a globally focused business solutions partner, delivering integrated, high-impact services to organizations across markets and industries. With a strong foundation in international best practices and deep cross-regional expertise, we enable businesses to scale, transform, and succeed in an increasingly competitive world.</p>
-                <p>Our team of seasoned professionals brings decades of combined experience spanning commercial intelligence, project management, and technology development. We work closely with our clients to design and implement tailored solutions that drive efficiency, innovation, and sustainable growth.</p>
+                <p>Our team of seasoned professionals brings decades of combined experience spanning commercial intelligence, project management, and technology development. We work closely with our clients to design and implement tailored solutions that drive efficiency, innovation, and sustainable growth. Today, we also help organizations adopt <strong>private, secure AI systems</strong> — from knowledge copilots and document intelligence to sovereign AI infrastructure — designed around their workflows, not the other way around.</p>
                 <p>At Emiratix Solutions, we are committed to building long-term partnerships and delivering measurable value through a client-centric and results-driven approach.</p>
                 <div class="about-features">
                     <div class="feature-item">
@@ -1380,7 +1430,41 @@
                     </div>
                 </div>
 
-                <!-- Blog 2 -->
+                <!-- Blog 2 - AI -->
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=800" alt="Private AI Infrastructure">
+                    </div>
+                    <div class="blog-content">
+                        <span class="blog-category">AI &amp; Automation</span>
+                        <h3>Private AI for Regulated Businesses: Why Sovereignty Matters</h3>
+                        <p class="blog-excerpt">How banks, healthcare, and government-linked entities can adopt AI without surrendering data control.</p>
+                        <button class="btn-read-more">Read Article <span>&rarr;</span></button>
+                    </div>
+                    <div class="blog-full-content" style="display: none;">
+                        <h4>The Shift from Public AI to Governed Intelligence</h4>
+                        <p>Generative AI has moved from experiment to operational necessity. For regulated businesses, however, the question is not whether to adopt AI — it is how to adopt it without exposing sensitive data, violating compliance obligations, or creating uncontrolled risk.</p>
+
+                        <h4>Private AI vs. Public AI</h4>
+                        <p>Public AI tools are fast to deploy but often require sending proprietary documents, customer data, or internal policies to third-party servers. Private AI keeps data inside your environment — on your cloud, private server, or data center — with access controls, audit logs, and human review built in from day one.</p>
+
+                        <h4>Regulatory Drivers in the GCC</h4>
+                        <p>Banks, healthcare providers, and government-linked entities across the GCC face tightening data residency, privacy, and audit requirements. Sovereign AI deployment allows these organizations to capture productivity gains while maintaining the transparency regulators expect.</p>
+
+                        <h4>Deployment Models That Fit Your Risk Profile</h4>
+                        <ul>
+                            <li><strong>Managed AI:</strong> Fast deployment using trusted commercial APIs and managed cloud services.</li>
+                            <li><strong>Hybrid AI:</strong> Sensitive data stays private; selected commercial models used where appropriate.</li>
+                            <li><strong>Sovereign AI:</strong> Full control — private infrastructure, on-premise or dedicated cloud, with auditability and data ownership.</li>
+                        </ul>
+
+                        <h4>How Emiratix Helps</h4>
+                        <p>Emiratix Solutions designs AI around your workflows, not the other way around. From our AI Readiness Sprint to full implementation of KnowledgeAI, DocuAI, GovernAI, and SovereignAI, we help regulated organizations adopt practical AI with security and governance first.</p>
+                        <p><a href="ai-solutions.html">Explore our AI Solutions &rarr;</a></p>
+                    </div>
+                </div>
+
+                <!-- Blog 3 -->
                 <div class="blog-card">
                     <div class="blog-image">
                         <img src="https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?q=80&w=800" alt="Core Banking">
